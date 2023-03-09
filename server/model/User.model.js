@@ -1,12 +1,14 @@
 const mongoose = require("mongoose")
 
 const userSchema = mongoose.Schema({
-    fristname:String,
-    lastname:String,
-    avatar:String,
+    lastName:String,
+    fristName:String,
     password:String,
     email:String,
-    post: [{ image: String, like: Number,comment:Array }],
+    avatar:String,
+    coverimg:String,
+    post: [{ post_image: String, description:String, like: Number,comment:Array }],
+
     
 })
 
