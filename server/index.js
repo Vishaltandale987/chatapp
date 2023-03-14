@@ -39,14 +39,14 @@ cloudinary.config({
 app.post('/upload/:id', function  (req, res) {
   let id=req.params.id
   console.log(req.data)
-  const finduser = UserModel.findById({_id:id})
+  // const finduser = UserModel.findById({_id:id})
   const file = req.files.photo
   let data = req.body.description
 
   cloudinary.uploader
     .upload(file.tempFilePath,(err,result ) => {
       // finduser.getPopulatedPaths.
-      let postdata = {post_image: "result.url", description:"data", like: Number,comment:Array}
+      // let postdata = {post_image: "result.url", description:"data", like: Number,comment:Array}
       console.log(result.url)
       res.send({image:result.url ,description:data, id:id });
 
