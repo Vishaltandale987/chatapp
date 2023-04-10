@@ -37,27 +37,7 @@ userrouter.post("/register", async (req, res) => {
 
 //login
 
-/**
- * @swagger
- * /user/login:
- *  post:
- *      summary: This is to login to the database
- *      tags: [User]
- *      requestBody:
- *           required: true
- *           content:
- *               application/json:
- *                  schema:
- *                      $ref: "#/components/schemas/User"
- *      responses:
- *          200:
- *              description: The user was succesfully register.1
- *              content:
- *                  application/json:
- *                      schema:
- *                          $ref: "#/components/schemas/User"
- *
- */
+
 
 userrouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -81,6 +61,41 @@ userrouter.post("/login", async (req, res) => {
     res.send({ massege: "something went wrong" });
   }
 });
+
+
+// post
+
+
+userrouter.post("/data", async (req, res) => {
+  try {
+    // Create a new user object using the request body
+    const user = new UserModel({
+      lastName: req.body.lastName,
+      firstName: req.body.firstName,
+      password: req.body.password,
+      email: req.body.email,
+      avatar: req.body.avatar,
+      coverimg: req.body.coverimg,
+      post: req.body.post,
+    });
+
+    // Save the user object to the database
+    await user.save();
+
+    // res.status(201).send(savedUser); // Send the saved user object back to the client
+    res.send({ massege: "New user register" });
+  } catch (error) {
+    // res.status(500).send(error); // Send any errors back to the client
+    res.send({ massege: "something went wrong" });
+  }
+});
+
+
+
+
+
+
+
 
 module.exports = {
   userrouter,
